@@ -10,6 +10,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 eval "$(starship init zsh)"
+eval "$(direnv hook $SHELL)"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -101,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias aliasgrep="alias | grep"
-alias config='/usr/bin/git --git-dir=/home/giovanni/.cfg/ --work-tree=/home/giovanni'
+alias config='/usr/bin/git --git-dir=/home/giovanni.lela/.cfg/ --work-tree=/home/giovanni.lela'
 alias toclip="xclip -selection c"
 alias fromclip="xclip -selection c -o"
 alias btoa="base64 --decode"
