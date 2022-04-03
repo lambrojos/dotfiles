@@ -5,7 +5,6 @@ $shlvl\
 $singularity\
 $kubernetes\
 $directory\
-${custom.git}\
 $vcsh\
 $docker_context\
 $package\
@@ -62,7 +61,10 @@ $shell\
 $character"""
 
 [aws]
-format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = 'bold yellow'
+disabled = false
+force_display = true
 
 [cmake]
 format = '\[[$symbol($version)]($style)\]'
