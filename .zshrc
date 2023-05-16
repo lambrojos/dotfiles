@@ -71,7 +71,7 @@ eval "$(direnv hook $SHELL)"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump nvm)
+plugins=(git autojump nvm yarn asdf terraform)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,10 +111,14 @@ alias g=git
 alias x=xdg-open
 alias de="docker exec"
 alias nr="npm run"
+alias changed="git status -s | grep '[A|M]' | cut -f3 -d' '"
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
 
+c() { printf "%s\n" "$@" | bc -l; }
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -140,3 +144,34 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
 zinit light g-plane/zsh-yarn-autocompletions
+
+## Kleco paths
+export VOLTA_HOME="$HOME/.volta"
+PATH="$VOLTA_HOME/bin:$PATH"
+
+export ANDROID_STUDIO_HOME="$HOME/stuff/android-studio"
+PATH="$ANDROID_STUDIO_HOME/bin:$PATH"
+
+export ANDROID_HOME=~/Android/Sdk
+PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+export JAVA_HOME="$HOME/stuff/android-studio/jre"
+PATH="$JAVA_HOME/bin:$PATH"
+
+## Something terraform related
+PATH="$HOME/.tfenv/bin:$PATH"
+
+## Some scripts
+SCRIPTS_HOME="$HOME/stuff/scripts"
+PATH="$SCRIPTS_HOME:$PATH"
+
+export PATH
+
+
+## Aws CLI autocomplete
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
+
+alias vim="nvim --listen /tmp/nvimsocket"
+alias nvr="nvr --remote-tab"
