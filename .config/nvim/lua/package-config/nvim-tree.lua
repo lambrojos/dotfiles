@@ -12,6 +12,35 @@ if not status_ok then
   return
 end
 
+-- live grep using Telescope inside the current directory under
+-- the cursor (or the parent directory of the current file)
+local function grep_in()
+  local nvim_tree = require('nvim-tree.lib')
+  local status_ok, node = pcall(nvim_tree.get_node_at_cursor)
+  if not status_ok then
+    return
+  end
+  local path = node.absolute_path or uv.cwd()
+  if node.type ~= 'directory' and node.parent then
+    path = node.parent.absolute_path
+  end
+  require('telescope.builtin').live_grep({
+    search_dirs = { path },
+    prompt_title = string.format('Grep in [%s]', vim.fs.basename(path)),
+  })
+end
+
+local function my_on_attach(buf)
+  local function opts(desc)
+      return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  local api = require('nvim-tree.api')
+  api.config.mappings.default_on_attach(buf)
+  vim.keymap.set('n', '<leader>fd', grep_in, opts('Search in dir'))
+end
+
+
 -- Call setup.
 -- See: `:help nvim-tree` 4. SETUP
 -- Each of these are documented in `:help nvim-tree.OPTION_NAME`
@@ -28,7 +57,7 @@ nvim_tree.setup {
   sync_root_with_cwd = false,
   reload_on_bufenter = false,
   respect_buf_cwd = false,
-  on_attach = "disable",
+  on_attach = my_on_attach,
   remove_keymaps = false,
   select_prompts = false,
   view = {
@@ -45,8 +74,7 @@ nvim_tree.setup {
     mappings = {
       custom_only = false,
       list = {
-        -- user mappings go here
-      },
+      }
     },
     float = {
       enable = false,

@@ -52,3 +52,12 @@ autocmd('Filetype', {
   },
   command = 'setlocal shiftwidth=2 tabstop=2'
 })
+
+
+-- Terraform stugg
+augroup('terraform', { clear = true })
+autocmd({'BufEnter', 'BufWinEnter'}, {
+  group = 'terraform',
+  pattern = { "*.tf", "*.tfvars"},
+  command = 'set filetype=terraform'
+})

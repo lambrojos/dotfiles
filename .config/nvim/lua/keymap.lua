@@ -52,8 +52,10 @@ map('n', '<leader>r', ':so %<CR>')
 map('n', '<leader>s', ':w<CR>')
 
 -- Close all windows and exit from Neovim with <leader> and q
-map('n', '<leader>q', ':qa!<CR>')
+map('n', '<leader>q', ':q<CR>')
 
+-- Close all windows and exit from Neovim with <leader> and q
+map('n', '<leader>qq', ':qa!<CR>')
 -----------------------------------------------------------
 -- Applications and Plugins shortcuts
 -----------------------------------------------------------

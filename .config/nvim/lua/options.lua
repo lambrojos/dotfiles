@@ -51,7 +51,7 @@ opt.lazyredraw = true       -- Faster scrolling
 opt.synmaxcol = 240         -- Max column for syntax highlight
 opt.updatetime = 250        -- ms to wait for trigger an event
 
-
+-- enable git blame line on demand
 g.gitblame_enabled = 0
 -----------------------------------------------------------
 -- Startup
@@ -66,10 +66,10 @@ local disabled_built_ins = {
    "getscriptPlugin",
 --   "gzip",
    "logipat",
---   "netrw",
---   "netrwPlugin",
---   "netrwSettings",
---   "netrwFileHandlers",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
 --   "matchit",
 --   "tar",
 --   "tarPlugin",

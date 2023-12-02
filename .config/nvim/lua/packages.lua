@@ -71,6 +71,10 @@ lazy.setup({
     {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
 
     {
+      'hashivim/vim-terraform'
+    },
+
+    {
       'f-person/git-blame.nvim'
     },
     {
@@ -85,6 +89,13 @@ lazy.setup({
       event = "VeryLazy",
       config = function()
           require("nvim-surround").setup({})
+      end
+    },
+    {
+      "terrortylor/nvim-comment",
+      event = "VeryLazy",
+      config = function()
+          require("nvim_comment").setup({})
       end
     }
   },
