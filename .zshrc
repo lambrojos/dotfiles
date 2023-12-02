@@ -102,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias aliasgrep="alias | grep"
-alias config='/usr/bin/git --git-dir=/home/giovanni.lela/.cfg/ --work-tree=/home/giovanni.lela'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias toclip="xclip -selection c"
 alias fromclip="xclip -selection c -o"
 alias btoa="base64 --decode"
